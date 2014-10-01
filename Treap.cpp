@@ -32,6 +32,42 @@ BinNode * Treap::inserthelp(BinNode * subroot, const int& k, const int& p)
 	return subroot;
 }
 
+BinNode * Treap::removehelp(BinNode * subroot, const int& K)
+{
+	if(subroot == NULL)
+		return NULL;
+	else if(K < subroot->getKey())
+		subroot->setLeft(removehelp(subroot->left(), K));
+	else if(K > subroot->getKey())
+		subroot->setRight(removehelp(subroot->right(), K));
+	else
+	{
+		if(subroot->left() == NULL) 
+		{
+			BinNode * tmp = subroot;
+			subroot = subroot->right();
+			delete tmp;
+		}
+		else if(subroot->right() == NULL)
+		{
+			BinNode * tmp = subroot;
+			subroot = subroot->left();
+			delete tmp;
+		}
+		else if (subroot->left()->getPriority() < subroot->right()->getPriority())
+		{
+			subroot = lrot(subroot);
+			subroot->setLeft(removehelp(subroot->left(), K));
+		}
+		else
+		{
+			subroot = rrot(subroot);
+			subroot->setRight(removehelp(subroot->right(), K));
+		}
+	}
+	return subroot;
+}
+
 BinNode * Treap::lrot(BinNode * k1) 
 {
 	BinNode * k2 = k1->right();

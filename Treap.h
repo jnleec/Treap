@@ -11,6 +11,7 @@ private:
 
 	void clearhelp(BinNode *);
 	BinNode * inserthelp(BinNode *, const int&, const int&);
+	BinNode * removehelp(BinNode *, const int&);
 	BinNode * lrot(BinNode *);
 	BinNode * rrot(BinNode *);
 	void printhelp(BinNode *, int) const;
@@ -40,6 +41,12 @@ public:
 		root = inserthelp(root, k, p);
 		nodecount++;
 		return true;
+	}
+
+	void remove(const int& K)
+	{
+		root = removehelp(root, K);
+		nodecount--;
 	}
 
 	int size()

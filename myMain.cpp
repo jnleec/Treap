@@ -21,6 +21,12 @@ int main()
 	cout<<"treap:"<<endl;
 	treap.print();
 
+	cout<<"delete one node by key:";
+	cin>>key;
+	
+	treap.remove(key);
+	treap.print();
+
 	system("pause");
 	return 0;
 }
