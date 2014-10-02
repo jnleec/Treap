@@ -14,6 +14,7 @@ private:
 	BinNode * removehelp(BinNode *, const int&);
 	BinNode * lrot(BinNode *);
 	BinNode * rrot(BinNode *);
+	BinNode removetop();
 	void printhelp(BinNode *, int) const;
 	int heighthelp(BinNode *);
 
@@ -47,6 +48,24 @@ public:
 	{
 		root = removehelp(root, K);
 		nodecount--;
+	}
+
+	BinNode * sort(int nunber_of_node) 
+	{
+		if (size() > 0) 
+		{
+			BinNode *sortList = new BinNode[nunber_of_node];
+			for (int i = 0; i < nunber_of_node; i++)
+			{
+				sortList[i] = removetop();
+			}
+
+			return sortList;
+		}
+		else
+		{
+			return NULL;
+		}
 	}
 
 	int size()
