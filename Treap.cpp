@@ -86,6 +86,13 @@ BinNode * Treap::rrot(BinNode * k1)
 	return k1;
 }
 
+BinNode Treap::removetop() 
+{
+	BinNode rootNode = *root;
+	root = removehelp(root, root->getKey());
+	return rootNode;
+}
+
 void Treap::printhelp(BinNode * subroot, int level) const
 {
 	if(subroot == NULL)
