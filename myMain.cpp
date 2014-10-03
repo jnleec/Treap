@@ -21,15 +21,15 @@ int main()
 	cout<<"treap:"<<endl;
 	treap.print();
 
-	//cout<<"delete one node by key:";
-	//cin>>key;
+	cout<<"delete one node by key:";
+	cin>>key;
 	
-	//treap.remove(key);
-	//treap.print();
+	treap.remove(key);
+	treap.print();
 
 	cout<<"sort by priority:"<<endl;
-	BinNode *sortList = treap.sort(nunber_of_node);
-	for (int i = 0; i < nunber_of_node; i++)
+	BinNode *sortList = treap.sort();
+	for (int i = 0; i < treap.size(); i++)
 	{
 		cout<<sortList[i].getKey()<<"|"<<sortList[i].getPriority()<<"\t";
 	}

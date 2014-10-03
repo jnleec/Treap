@@ -11,20 +11,22 @@ private:
 	int priority;
 	BinNode * lc;
 	BinNode * rc;
+	BinNode * pa;
 
 public:
 
 	BinNode()
 	{
-		lc = rc = NULL;
+		lc = rc = pa = NULL;
 	}
 
-	BinNode(int k, int p, BinNode * l = NULL, BinNode * r = NULL)
+	BinNode(int k, int p, BinNode * l = NULL, BinNode * r = NULL, BinNode * par = NULL)
 	{
 		key = k;
 		priority = p;
 		lc = l;
 		rc = r;
+		pa = par;
 	}
 
 	~BinNode(){}
@@ -67,6 +69,16 @@ public:
 	void setRight(BinNode * b)
 	{
 		rc = b;
+	}
+
+	inline BinNode * parent() const
+	{
+		return pa;
+	}
+
+	void setParent(BinNode * par)
+	{
+		pa = par;
 	}
 
 	bool isLeaf()
