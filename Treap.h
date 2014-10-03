@@ -50,12 +50,12 @@ public:
 		nodecount--;
 	}
 
-	BinNode * sort(int nunber_of_node) 
+	BinNode * sort() 
 	{
 		if (size() > 0) 
 		{
-			BinNode *sortList = new BinNode[nunber_of_node];
-			for (int i = 0; i < nunber_of_node; i++)
+			BinNode *sortList = new BinNode[nodecount];
+			for (int i = 0; i < nodecount; i++)
 			{
 				sortList[i] = removetop();
 			}
