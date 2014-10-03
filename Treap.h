@@ -15,6 +15,11 @@ private:
 	BinNode * lrot(BinNode *);
 	BinNode * rrot(BinNode *);
 	BinNode removetop();
+	BinNode * minnode(BinNode *);
+	BinNode * maxnode(BinNode *);
+	BinNode * predecessor(BinNode *);
+	BinNode * successor(BinNode *);
+	void findPreAndSuchelp(BinNode *);
 	void printhelp(BinNode *, int) const;
 	int heighthelp(BinNode *);
 
@@ -79,6 +84,14 @@ public:
 			cout<<"The Treap is empty.\n";
 		else
 			printhelp(root, 0);
+	}
+
+	void findPreAndSuc()
+	{
+		if(root == NULL)
+			cout<<"The Treap is empty.\n";
+		else
+			findPreAndSuchelp(root);
 	}
 
 	int height();
