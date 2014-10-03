@@ -21,6 +21,9 @@ int main()
 	cout<<"treap:"<<endl;
 	treap.print();
 
+	cout<<"find nodes' predecessor and successor:"<<endl;
+	treap.findPreAndSuc();
+
 	cout<<"delete one node by key:";
 	cin>>key;
 	

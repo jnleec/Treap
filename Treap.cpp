@@ -123,6 +123,22 @@ BinNode Treap::removetop()
 	return rootNode;
 }
 
+BinNode * Treap::minnode(BinNode * subroot)
+{
+	BinNode * p = subroot;
+	while (p->left() != NULL)
+		p = p->left();
+	return p;
+}
+
+BinNode * Treap::maxnode(BinNode * subroot)
+{
+	BinNode * p = subroot;
+	while (p->right() != NULL)
+		p = p->right();
+	return p;
+}
+
 void Treap::printhelp(BinNode * subroot, int level) const
 {
 	if(subroot == NULL)
@@ -139,6 +155,63 @@ int Treap::heighthelp(BinNode * subroot)
 	if(subroot == NULL)
 		return 0;
 	return 1 + max(heighthelp(subroot->left()), heighthelp(subroot->right()));
+}
+
+BinNode * Treap::predecessor(BinNode * subroot) 
+{
+	if (subroot->left() != NULL)
+		return maxnode(subroot->left());
+
+	BinNode * y = subroot->parent();
+	while (y != NULL && subroot == y->left())
+	{
+		subroot = y;
+		y = y->parent();
+	}
+	return y;
+}
+
+BinNode * Treap::successor(BinNode * subroot)
+{
+	if (subroot->right() != NULL)
+		return minnode(subroot->right());
+
+	BinNode * y = subroot->parent();
+	while (y != NULL && subroot == y->right())
+	{
+		subroot = y;
+		y = y->parent();
+	}
+	return y;
+}
+
+void Treap::findPreAndSuchelp(BinNode * subroot)
+{
+	if(subroot == NULL)
+		return;
+	findPreAndSuchelp(subroot->left());
+
+	BinNode * predecessorNode = predecessor(subroot);
+	BinNode * successorNode = successor(subroot);
+
+	if (predecessorNode == NULL) 
+	{
+		cout<<subroot->getKey()<<"|"<<subroot->getPriority()
+			<<" -> predecessor : none, successor : "<<successorNode->getKey()<<"|"<<successorNode->getPriority()<<endl;
+	}
+	else if(successorNode == NULL) 
+	{
+		cout<<subroot->getKey()<<"|"<<subroot->getPriority()
+			<<" -> predecessor : "<<predecessorNode->getKey()<<"|"<<predecessorNode->getPriority()<<", successor : none"<<endl;
+	}
+	else
+	{
+		cout<<subroot->getKey()<<"|"<<subroot->getPriority()
+			<<" -> predecessor : "<<predecessorNode->getKey()<<"|"<<predecessorNode->getPriority()
+			<<", successor : "<<successorNode->getKey()<<"|"<<successorNode->getPriority()<<endl;
+	}
+
+	findPreAndSuchelp(subroot->right());
 }
 
 int Treap::height()
